@@ -1,5 +1,6 @@
 package com.zyk.demo.controller;
 
+import com.zyk.demo.common.ResponseBuilder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +24,6 @@ public class TestController {
         Map map = new HashMap();
         map.put("name","张三");
         map.put("age",12);
-        return map;
+        return ResponseBuilder.buildNormalResponse(map);
     }
 }
