@@ -1,37 +1,16 @@
 package com.zyk.demo.common;
 
+import lombok.Data;
+
 /**
  * 返回结果统一形式工具类
  */
+@Data
 public class ResponseBuilder {
 
     private String status ;     //  1: 成功 ; 0: 失败
 
     private String msg ;
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
-
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
 
     private Object data;
 
