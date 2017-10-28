@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 将数据库连接数据抽取到属性文件中方便测试 -->
+    <!-- <properties resource="/WEB-INF/classes/jdbc.properties"></properties> -->
+    <!-- 别名的定义 -->
+
+
+    <!-- 数据库连接用数据库连接池 -->
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
+</configuration>

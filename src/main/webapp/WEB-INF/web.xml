@@ -6,11 +6,27 @@
 
   <display-name>Archetype Created Web Application</display-name>
 
+  <!-- 设置监听，在web容器启动时自动装配ApplicationContext的配置信息-->
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <!-- 设置Spring容器加载配置文件路径 -->
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>
+      classpath:config/demoServlet-servlet.xml
+      classpath:config/applicationContext.xml
+    </param-value>
+  </context-param>
 
   <servlet>
     <servlet-name>demoServlet</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <load-on-startup>1</load-on-startup>
+      <init-param>
+          <param-name>contextConfigLocation</param-name>
+          <param-value>classpath:config/demoServlet-servlet.xml</param-value>
+      </init-param>
+      <load-on-startup>1</load-on-startup>
     <async-supported>true</async-supported>
   </servlet>
 
