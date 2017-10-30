@@ -36,4 +36,19 @@ public class TestController {
         userService.insert(user);
         return ResponseBuilder.buildNormalResponse(map);
     }
+
+    @RequestMapping("bbb")
+    @ResponseBody
+    public Object index2(){
+        System.out.println("this is  bbb");
+        Map map = new HashMap();
+        map.put("name","张三");
+        map.put("age",12);
+        User user = new User();
+        user.setName("咱三");
+        user.setAge("1232");
+        user.setUserName("bbb");
+        userService.insert(user);
+        return ResponseBuilder.buildNormalResponse(map);
+    }
 }
