@@ -23,13 +23,13 @@ public class ResponseBuilder {
 
     ResponseBuilder(Object data){
         this.status = "1";
-        this.msg = "";
+        this.msg = "操作成功";
         this.data = data;
     }
 
     ResponseBuilder(){
         this.status = "1";
-        this.msg = "";
+        this.msg = "操作成功";
     }
 
     ResponseBuilder(String msg){

@@ -5,7 +5,36 @@
 <!-- namespace的值就是dao接口的完整路劲，就这个demo而言namespace 就是userDao.java的完整路劲 -->
 <mapper namespace="com.zyk.demo.dao.UserMapper">
     <!-- 这里的id就是接口中方法的名称 -->
+    <resultMap id="getMap" type="com.zyk.demo.entity.User"/>
+    <sql id="TABLE_NAME">
+        t_user
+    </sql>
     <insert id="saveUser" >
-        insert into t_user(name,age,user_name) values(#{entity.name},#{entity.age},#{entity.userName})
+        insert into <include refid="TABLE_NAME"/> (real_name,password,user_name) values(#{entity.realName},#{entity.password},#{entity.userName})
     </insert>
+
+    <select id="getById" resultMap="getMap">
+        select *  from <include refid="TABLE_NAME"/>
+        where id = #{id}
+    </select>
+
+    <update id="updateUser">
+        update <include refid="TABLE_NAME" />
+        <include refid="SET_COLUMN"/>
+        where  id = #{entity.id}
+    </update>
+
+    <sql id="SET_COLUMN">
+        <set>
+            <if test="entity.userName != null and entity.userName != ''">
+                user_name = #{entity.userName},
+            </if>
+            <if test="entity.realName != null and entity.realName != ''">
+                real_name = #{entity.realName},
+            </if>
+            <if test="entity.password != null and entity.password != ''">
+                 password = #{entity.password},
+            </if>
+        </set>
+    </sql>
 </mapper>

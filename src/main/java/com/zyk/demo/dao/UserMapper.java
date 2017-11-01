@@ -11,4 +11,8 @@ import org.springframework.stereotype.Service;
 public interface UserMapper {
 
     void saveUser(@Param("entity") User user);
+
+    User getById(int id);
+
+    void updateUser(@Param("entity") User user);
 }
