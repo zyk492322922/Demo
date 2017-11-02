@@ -114,6 +114,12 @@
           <version>3.0</version>
       </dependency>
 
+      <dependency>
+          <groupId>javax.persistence</groupId>
+          <artifactId>persistence-api</artifactId>
+          <version>1.0.2</version>
+      </dependency>
+
   </dependencies>
   <build>
     <finalName>Demo</finalName>
