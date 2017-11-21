@@ -1,5 +1,7 @@
 package com.zyk.demo.dao;
 
+import com.zyk.demo.common.BaseDao;
+import com.zyk.demo.common.BaseDaoImpl;
 import com.zyk.demo.entity.User;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Service;

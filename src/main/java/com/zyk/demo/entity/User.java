@@ -1,5 +1,6 @@
 package com.zyk.demo.entity;
 
+import com.zyk.demo.common.BaseEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
