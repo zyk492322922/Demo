@@ -10,7 +10,7 @@ import javax.crypto.spec.DESKeySpec;
 import java.security.SecureRandom;
 
 /**
- * DES加解密
+ * DES 对称加解密   密码必须是8的倍数位但是不能是8，如 16,24
  * [加密后是byte字节数组，加密后的字节数组无法用new String(byte)转化成String,所以一般加密后,用base64编码]
  */
 public class DESUtils {
@@ -77,7 +77,7 @@ public class DESUtils {
 
     public static void main(String[] args) {
         String content = "this is 测试";
-        String desKey = "6497966464341348";
+        String desKey = "afhyujikolkmbgty";
 
         System.out.println("加密前："+content);
         String result = encrypt(content,desKey);

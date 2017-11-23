@@ -1,6 +1,7 @@
 package com.zyk.demo.controller;
 
 import com.zyk.demo.common.ResponseBuilder;
+import com.zyk.demo.common.annotation.DemoAnnotation;
 import com.zyk.demo.entity.User;
 import com.zyk.demo.param.UserParam;
 import com.zyk.demo.service.user.UserService;
@@ -39,6 +40,22 @@ public class UserController {
     @ResponseBody
     public Object update(@RequestBody UserParam param){
         userService.update(param);
+        return ResponseBuilder.buildNormalResponse();
+    }
+
+
+    @RequestMapping(value = "test",method = RequestMethod.GET)
+    @ResponseBody
+    @DemoAnnotation
+    public Object testaop(){
+        System.out.println(">>>>>>this is test method<<<<<<");
+        return ResponseBuilder.buildNormalResponse();
+    }
+
+    @RequestMapping(value = "test2",method = RequestMethod.GET)
+    @ResponseBody
+    public Object testNotAop(){
+        System.out.println(">>>>>>this is test not aop method<<<<<<");
         return ResponseBuilder.buildNormalResponse();
     }
 
