@@ -1,4 +1,4 @@
-package com.zyk.demo.test;
+package com.zyk.demo.rabbitMq;
 
 import com.zyk.demo.entity.User;
 import org.springframework.amqp.core.AmqpTemplate;

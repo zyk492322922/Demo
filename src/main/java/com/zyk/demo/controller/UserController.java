@@ -5,6 +5,7 @@ import com.zyk.demo.common.annotation.DemoAnnotation;
 import com.zyk.demo.entity.User;
 import com.zyk.demo.param.UserParam;
 import com.zyk.demo.service.user.UserService;
+import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -58,5 +59,7 @@ public class UserController {
         System.out.println(">>>>>>this is test not aop method<<<<<<");
         return ResponseBuilder.buildNormalResponse();
     }
+
+
 
 }
