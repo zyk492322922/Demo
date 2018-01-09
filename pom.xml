@@ -142,6 +142,23 @@
           <artifactId>aspectjweaver</artifactId>
           <version>1.7.4</version>
       </dependency>
+      <!--Gosn  作为mq的转换器-->
+      <dependency>
+          <groupId>com.google.code.gson</groupId>
+          <artifactId>gson</artifactId>
+          <version>2.3</version>
+      </dependency>
+
+      <dependency>
+          <groupId>org.springframework.amqp</groupId>
+          <artifactId>spring-rabbit</artifactId>
+          <version>1.4.5.RELEASE</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.amqp</groupId>
+          <artifactId>spring-amqp</artifactId>
+          <version>1.6.0.RELEASE</version>
+      </dependency>
 
   </dependencies>
   <build>

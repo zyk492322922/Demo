@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/rabbit
+            http://www.springframework.org/schema/rabbit/spring-rabbit-1.2.xsd">
+
+    <!-- ①连接服务配置 消息服务的地址,用户名,密码-->
+    <!--channel-cache-size:channel的缓存数量。新版本默认是25-->
+    <rabbit:connection-factory id="mqConnectionFactory"
+                               host="127.0.0.1" username="guest" password="guest" port="5672"
+                               virtual-host="/" channel-cache-size="5" />
+
+    <rabbit:admin connection-factory="mqConnectionFactory" />
+
+   <!-- ②queue 队列声明 -->
+   <!-- name:queue的名字。
+        durable:是否为持久的。默认是true，RabbitMQ重启后queue依然存在。
+        auto-delete:表示消息队列没有在使用时将被自动删除。默认是false。
+        exclusive:表示该消息队列是否只在当前connection生效。默认false。-->
+    <rabbit:queue  durable="true" auto-delete="false" exclusive="false" name="queue.test" />
+
+
+   <!-- ③exchange queue binging key 绑定 -->
+   <!-- name:exchange的名字。
+        durable:是否为持久的，默认为true，RabbitMQ重启后exhange依然存在。
+        auto-delete:表示exchange在未被使用时是否自动删除，默认是false。
+        key:queue在该direct-exchange中的key值。当消息发送给该direct-exchange中指定key为设置值时，消息将会转发给queue参数指定的消息队列。-->
+    <rabbit:direct-exchange name="queue.test.exchange" durable="true" auto-delete="false">
+        <rabbit:bindings>
+            <rabbit:binding queue="queue.test" key="queue.test.key" />
+        </rabbit:bindings>
+    </rabbit:direct-exchange>
+
+    <!-- spring amqp默认的是jackson 的一个插件,目的将生产者生产的数据转换为json存入消息队列，由于Gson的速度快于jackson,这里替换为Gson的一个实现 -->
+    <bean id="jsonMessageConverter" class="com.zyk.demo.util.Gson2JsonMessageConverter" />
+
+    <!-- ④spring template声明 -->
+    <!--Spring为方便使用RabbitMQ服务，提供一个操作模板类:org.springframework.amqp.rabbit.core.RabbitTemplate。-->
+    <!--<rabbit:template id="amqpTemplate" exchange="spring.queue.exchange"  routing-key="spring.queue.tag.key"
+                     connection-factory="connectionFactory" message-converter="jsonMessageConverter" />-->
+
+    <rabbit:template id="amqpTemplate" exchange="queue.test.exchange"  routing-key="queue.test.key"
+                     connection-factory="mqConnectionFactory" message-converter="jsonMessageConverter" />
+</beans>
