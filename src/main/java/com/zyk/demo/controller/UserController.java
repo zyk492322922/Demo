@@ -28,8 +28,7 @@ public class UserController {
 
     @Resource
     private UserService userService;
-    @Resource
-    private AmqpTemplate amqpTemplate;
+
 
     @RequestMapping(value = "addUser",method = RequestMethod.POST)
     @ResponseBody
@@ -62,14 +61,7 @@ public class UserController {
         return ResponseBuilder.buildNormalResponse();
     }
 
-    @RequestMapping(value = "testMq",method = RequestMethod.GET)
-    @ResponseBody
-    public Object testMq(){
-        User user = User.builder().userName("123").realName("aaa").password("123456").build();
-        amqpTemplate.convertAndSend(user);
-        System.out.println("mq 发送success>>>>>>>>");
-        return ResponseBuilder.buildNormalResponse();
-    }
+
 
 
 

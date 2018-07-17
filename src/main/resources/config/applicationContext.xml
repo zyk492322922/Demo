@@ -15,11 +15,11 @@ http://www.springframework.org/schema/context/spring-context.xsd">
     <!--数据库配置文件-->
     <import resource="classpath:spring/spring-datasource.xml"/>
     <!--redis配置文件-->
-    <import resource="classpath:spring/spring-redis.xml"/>
+    <!--<import resource="classpath:spring/spring-redis.xml"/>-->
     <!--拦截器配置文件-->
     <import resource="classpath:spring/spring-interceptor.xml"/>
     <!--mq生产者配置文件-->
-    <import resource="classpath:spring/spring-rabbitmq-produce.xml"/>
+    <!--<import resource="classpath:spring/spring-rabbitmq-produce.xml"/>-->
     <!--mq消费者配置文件-->
-    <import resource="classpath:spring/spring-rabbitmq-consumer.xml"/>
+    <!--<import resource="classpath:spring/spring-rabbitmq-consumer.xml"/>-->
 </beans>

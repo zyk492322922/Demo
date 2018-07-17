@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace的值就是dao接口的完整路劲，就这个demo而言namespace 就是userDao.java的完整路劲 -->
+<mapper namespace="com.zyk.demo.dao.ProductMapper">
+    <!-- 这里的id就是接口中方法的名称 -->
+    <resultMap id="getMap" type="com.zyk.demo.entity.ProductEntity"/>
+
+    <sql id="TABLE_NAME">
+        t_product
+    </sql>
+    <sql id="ALL_COLUMN">
+        id, product_name, product_price,product_summary,product_pic
+    </sql>
+    <insert id="saveUser" >
+        insert into <include refid="TABLE_NAME"/> (real_name,password,user_name) values(#{entity.realName},#{entity.password},#{entity.userName})
+    </insert>
+
+    <select id="getById" resultMap="getMap">
+        select *  from <include refid="TABLE_NAME"/>
+        where id = #{id}
+    </select>
+
+    <update id="updateUser">
+        update <include refid="TABLE_NAME" />
+        <include refid="SET_COLUMN"/>
+        where  id = #{entity.id}
+    </update>
+
+    <select id="getList" resultMap="getMap">
+        select <include refid="ALL_COLUMN"/>
+        from <include refid="TABLE_NAME"/>
+        <include refid="FIND_WHERE_COLUMN"/>
+    </select>
+
+
+    <sql id="FIND_WHERE_COLUMN">
+        <where>
+            <if test="entity.id != null">
+               and id = #{entity.id}
+            </if>
+            <if test="entity.productName !=null and entity.productName !=''">
+                and product_name = #{entity.productName}
+            </if>
+            <if test="entity.productSummary != null and entity.productSummary != ''">
+                and product_summary like concat('%', #{entity.productSummary}, '%')
+            </if>
+        </where>
+    </sql>
+
+    <sql id="SET_COLUMN">
+        <set>
+
+        </set>
+    </sql>
+</mapper>

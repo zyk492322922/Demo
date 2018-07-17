@@ -19,15 +19,11 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
-    @Resource
-    private RedisUtil redisUtil;
 
 
     @Override
     public void insert(User user) {
         //redisUtil.set("test","this is test");
-        String test = redisUtil.get("test");
-        System.out.println("test = "+ test);
         userMapper.saveUser(user);
     }
 
